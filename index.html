@@ -6,240 +6,389 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
+    <script src="scripts/index.js"></script>
     <title>MESI SIMULATION</title>
 </head>
 
 <body>
     <div class="application">
         <div class="container">
+            <div class="clock">
+                <p id="clock-cycle">Clock cycle: <i id="clock-value">0</i></p>
+                <hr>
+            </div>
             <div class="cpus-caches">
-                <div class="cpu-cache">
-                    <div class="cpu">
+                <div class="cpu-cache" id="cpu-cache-1">
+                    <div class="cpu" id="cpu-1">
                         <p class="cpu-title">CPU</p>
                         <div class="cpu-inputs">
-                            <input type="text" id="address" placeholder="Address">
-                            <input type="text" id="value" placeholder="Value">
+                            <input type="text" id="address-1" placeholder="Address">
+                            <input type="text" id="value-1" placeholder="Value">
                         </div>
                         <div class="cpu-buttons">
-                            <button type="submit" class="save-btn">Save</button>
-                            <button type="submit" class="load-btn">Load</button>
+                            <button type="submit" class="save-btn" id="save-btn-1">Save</button>
+                            <button type="submit" class="load-btn" id="load-btn-1">Load</button>
                         </div>
                     </div>
-                    <div class="cache">
+                    <div class="cache" id="cache-1">
                         <div class="cache-title">Internal Cache</div>
                         <table>
                             <tr>
-                                <th class="cache-th">Address</th>
-                                <th class="cache-th">Status</th>
-                                <th class="cache-th">Value</th>
+                                <th class="cache-th">#</th>
+                                <th class="cache-th">Tag</th>
+                                <th class="cache-th">State</th>
+                                <th class="cache-th">Cycle</th>
+                                <th class="cache-th">00</th>
+                                <th class="cache-th">01</th>
+                                <th class="cache-th">10</th>
+                                <th class="cache-th">11</th>
                             </tr>
-                            <tr>
+                            <tr id="cr-1">
                                 <td class="cache-address">1</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
+                                <td class="c1-ca1-tag">0000</td>
+                                <td class="c1-ca1-state">Invalid</td>
+                                <td class="c1-ca1-clock">0</td>
+                                <td class="c1-ca1-00">0</td>
+                                <td class="c1-ca1-01">0</td>
+                                <td class="c1-ca1-10">0</td>
+                                <td class="c1-ca1-11">0</td>
                             </tr>
-                            <tr>
+                            <tr id="cr-2">
                                 <td class="cache-address">2</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
+                                <td class="c1-ca2-tag">0000</td>
+                                <td class="c1-ca2-state">Invalid</td>
+                                <td class="c1-ca2-clock">0</td>
+                                <td class="c1-ca2-00">0</td>
+                                <td class="c1-ca2-01">0</td>
+                                <td class="c1-ca2-10">0</td>
+                                <td class="c1-ca2-11">0</td>
                             </tr>
-                            <tr>
+                            <tr id="cr-3">
                                 <td class="cache-address">3</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
-                            </tr>
-                            <tr>
-                                <td class="cache-address">4</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
-                            </tr>
-                            <tr>
-                                <td class="cache-address">5</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
-                            </tr>
-                            <tr>
-                                <td class="cache-address">6</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
+                                <td class="c1-ca3-tag">0000</td>
+                                <td class="c1-ca3-state">Invalid</td>
+                                <td class="c1-ca3-clock">0</td>
+                                <td class="c1-ca3-00">0</td>
+                                <td class="c1-ca3-01">0</td>
+                                <td class="c1-ca3-10">0</td>
+                                <td class="c1-ca3-11">0</td>
                             </tr>
                         </table>
                     </div>
                 </div>
-                <div class="cpu-cache">
-                    <div class="cpu">
+                <div class="cpu-cache" id="cpu-cache-2">
+                    <div class="cpu" id="cpu-2">
                         <p class="cpu-title">CPU</p>
                         <div class="cpu-inputs">
-                            <input type="text" id="address" placeholder="Address">
-                            <input type="text" id="value" placeholder="Value">
+                            <input type="text" id="address-2" placeholder="Address">
+                            <input type="text" id="value-2" placeholder="Value">
                         </div>
                         <div class="cpu-buttons">
-                            <button type="submit" class="save-btn">Save</button>
-                            <button type="submit" class="load-btn">Load</button>
+                            <button type="submit" class="save-btn" id="save-btn-2">Save</button>
+                            <button type="submit" class="load-btn" id="load-btn-2">Load</button>
                         </div>
                     </div>
-                    <div class="cache">
+                    <div class="cache" id="cache-2">
                         <div class="cache-title">Internal Cache</div>
                         <table>
                             <tr>
-                                <th class="cache-th">Address</th>
-                                <th class="cache-th">Status</th>
-                                <th class="cache-th">Value</th>
+                                <th class="cache-th">#</th>
+                                <th class="cache-th">Tag</th>
+                                <th class="cache-th">State</th>
+                                <th class="cache-th">Cycle</th>
+                                <th class="cache-th">00</th>
+                                <th class="cache-th">01</th>
+                                <th class="cache-th">10</th>
+                                <th class="cache-th">11</th>
                             </tr>
-                            <tr>
+                            <tr id="cr-2">
                                 <td class="cache-address">1</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
+                                <td class="c2-ca1-tag">0000</td>
+                                <td class="c2-ca1-state">Invalid</td>
+                                <td class="c2-ca1-clock">0</td>
+                                <td class="c2-ca1-00">0</td>
+                                <td class="c2-ca1-01">0</td>
+                                <td class="c2-ca1-10">0</td>
+                                <td class="c2-ca1-11">0</td>
                             </tr>
-                            <tr>
+                            <tr id="cr-2">
                                 <td class="cache-address">2</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
+                                <td class="c2-ca2-tag">0000</td>
+                                <td class="c2-ca2-state">Invalid</td>
+                                <td class="c2-ca2-clock">0</td>
+                                <td class="c2-ca2-00">0</td>
+                                <td class="c2-ca2-01">0</td>
+                                <td class="c2-ca2-10">0</td>
+                                <td class="c2-ca2-11">0</td>
                             </tr>
-                            <tr>
+                            <tr id="cr-3">
                                 <td class="cache-address">3</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
-                            </tr>
-                            <tr>
-                                <td class="cache-address">4</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
-                            </tr>
-                            <tr>
-                                <td class="cache-address">5</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
-                            </tr>
-                            <tr>
-                                <td class="cache-address">6</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
+                                <td class="c2-ca3-tag">0000</td>
+                                <td class="c2-ca3-state">Invalid</td>
+                                <td class="c2-ca3-clock">0</td>
+                                <td class="c2-ca3-00">0</td>
+                                <td class="c2-ca3-01">0</td>
+                                <td class="c2-ca3-10">0</td>
+                                <td class="c2-ca3-11">0</td>
                             </tr>
                         </table>
                     </div>
                 </div>
-                <div class="cpu-cache">
-                    <div class="cpu">
+                <div class="cpu-cache" id="cpu-cache-3">
+                    <div class="cpu" id="cpu-3">
                         <p class="cpu-title">CPU</p>
                         <div class="cpu-inputs">
-                            <input type="text" id="address" placeholder="Address">
-                            <input type="text" id="value" placeholder="Value">
+                            <input type="text" id="address-3" placeholder="Address">
+                            <input type="text" id="value-3" placeholder="Value">
                         </div>
                         <div class="cpu-buttons">
-                            <button type="submit" class="save-btn">Save</button>
-                            <button type="submit" class="load-btn">Load</button>
+                            <button type="submit" class="save-btn" id="save-btn-3">Save</button>
+                            <button type="submit" class="load-btn" id="load-btn-3">Load</button>
                         </div>
                     </div>
-                    <div class="cache">
+                    <div class="cache" id="cache-3">
                         <div class="cache-title">Internal Cache</div>
                         <table>
                             <tr>
-                                <th class="cache-th">Address</th>
-                                <th class="cache-th">Status</th>
-                                <th class="cache-th">Value</th>
+                                <th class="cache-th">#</th>
+                                <th class="cache-th">Tag</th>
+                                <th class="cache-th">State</th>
+                                <th class="cache-th">Cycle</th>
+                                <th class="cache-th">00</th>
+                                <th class="cache-th">01</th>
+                                <th class="cache-th">10</th>
+                                <th class="cache-th">11</th>
                             </tr>
-                            <tr>
+                            <tr id="cr-1">
                                 <td class="cache-address">1</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
+                                <td class="c3-ca1-tag">0000</td>
+                                <td class="c3-ca1-state">Invalid</td>
+                                <td class="c3-ca1-clock">0</td>
+                                <td class="c3-ca1-00">0</td>
+                                <td class="c3-ca1-01">0</td>
+                                <td class="c3-ca1-10">0</td>
+                                <td class="c3-ca1-11">0</td>
                             </tr>
-                            <tr>
+                            <tr id="cr-2">
                                 <td class="cache-address">2</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
+                                <td class="c3-ca2-tag">0000</td>
+                                <td class="c3-ca2-state">Invalid</td>
+                                <td class="c3-ca2-clock">0</td>
+                                <td class="c3-ca2-00">0</td>
+                                <td class="c3-ca2-01">0</td>
+                                <td class="c3-ca2-10">0</td>
+                                <td class="c3-ca2-11">0</td>
                             </tr>
-                            <tr>
+                            <tr id="cr-3">
                                 <td class="cache-address">3</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
-                            </tr>
-                            <tr>
-                                <td class="cache-address">4</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
-                            </tr>
-                            <tr>
-                                <td class="cache-address">5</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
-                            </tr>
-                            <tr>
-                                <td class="cache-address">6</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
+                                <td class="c3-ca3-tag">0000</td>
+                                <td class="c3-ca3-state">Invalid</td>
+                                <td class="c3-ca3-clock">0</td>
+                                <td class="c3-ca3-00">0</td>
+                                <td class="c3-ca3-01">0</td>
+                                <td class="c3-ca3-10">0</td>
+                                <td class="c3-ca3-11">0</td>
                             </tr>
                         </table>
                     </div>
                 </div>
-                <div class="cpu-cache">
-                    <div class="cpu">
+                <div class="cpu-cache" id="cpu-cache-4">
+                    <div class="cpu" id="cpu-4">
                         <p class="cpu-title">CPU</p>
                         <div class="cpu-inputs">
-                            <input type="text" id="address" placeholder="Address">
-                            <input type="text" id="value" placeholder="Value">
+                            <input type="text" id="address-4" placeholder="Address">
+                            <input type="text" id="value-4" placeholder="Value">
                         </div>
                         <div class="cpu-buttons">
-                            <button type="submit" class="save-btn">Save</button>
-                            <button type="submit" class="load-btn">Load</button>
+                            <button type="submit" class="save-btn" id="save-btn-4">Save</button>
+                            <button type="submit" class="load-btn" id="load-btn-4">Load</button>
                         </div>
                     </div>
-                    <div class="cache">
+                    <div class="cache" id="cache-4">
                         <div class="cache-title">Internal Cache</div>
                         <table>
                             <tr>
-                                <th class="cache-th">Address</th>
-                                <th class="cache-th">Status</th>
-                                <th class="cache-th">Value</th>
+                                <th class="cache-th">#</th>
+                                <th class="cache-th">Tag</th>
+                                <th class="cache-th">State</th>
+                                <th class="cache-th">Cycle</th>
+                                <th class="cache-th">00</th>
+                                <th class="cache-th">01</th>
+                                <th class="cache-th">10</th>
+                                <th class="cache-th">11</th>
                             </tr>
-                            <tr>
+                            <tr id="cr-1">
                                 <td class="cache-address">1</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
+                                <td class="c4-ca1-tag">0000</td>
+                                <td class="c4-ca1-state">Invalid</td>
+                                <td class="c4-ca1-clock">0</td>
+                                <td class="c4-ca1-00">0</td>
+                                <td class="c4-ca1-01">0</td>
+                                <td class="c4-ca1-10">0</td>
+                                <td class="c4-ca1-11">0</td>
                             </tr>
-                            <tr>
+                            <tr id="cr-2">
                                 <td class="cache-address">2</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
+                                <td class="c4-ca2-tag">0000</td>
+                                <td class="c4-ca2-state">Invalid</td>
+                                <td class="c4-ca2-clock">0</td>
+                                <td class="c4-ca2-00">0</td>
+                                <td class="c4-ca2-01">0</td>
+                                <td class="c4-ca2-10">0</td>
+                                <td class="c4-ca2-11">0</td>
                             </tr>
-                            <tr>
+                            <tr id="cr-3">
                                 <td class="cache-address">3</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
-                            </tr>
-                            <tr>
-                                <td class="cache-address">4</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
-                            </tr>
-                            <tr>
-                                <td class="cache-address">5</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
-                            </tr>
-                            <tr>
-                                <td class="cache-address">6</td>
-                                <td class="cache-status">Invalid</td>
-                                <td class="cache-value">150</td>
+                                <td class="c4-ca3-tag">0000</td>
+                                <td class="c4-ca3-state">Invalid</td>
+                                <td class="c4-ca3-clock">0</td>
+                                <td class="c4-ca3-00">0</td>
+                                <td class="c4-ca3-01">0</td>
+                                <td class="c4-ca3-10">0</td>
+                                <td class="c4-ca3-11">0</td>
                             </tr>
                         </table>
                     </div>
                 </div>
             </div>
-            <div class="bus">
-                <p class="bus-title">
-                    BUS
-                </p>
-                <div class="bus-container">
-
+            <div class="components">
+                <div class="memory">
+                    <p class="memory-title">
+                        Memory
+                    </p>
+                    <div class="memory-container">
+                        <table>
+                            <tr>
+                                <th class="cache-th">#</th>
+                                <th class="cache-th">00</th>
+                                <th class="cache-th">01</th>
+                                <th class="cache-th">10</th>
+                                <th class="cache-th">11</th>
+                            </tr>
+                            <tr id="mr-0000">
+                                <td id="cd-0000">0000</td>
+                                <td id="cd-0000-00">0</td>
+                                <td id="cd-0000-01">0</td>
+                                <td id="cd-0000-10">0</td>
+                                <td id="cd-0000-11">0</td>
+                            </tr>
+                            <tr id="mr-0001">
+                                <td class="cd-0001">0001</td>
+                                <td id="cd-0001-00">0</td>
+                                <td id="cd-0001-01">0</td>
+                                <td id="cd-0001-10">0</td>
+                                <td id="cd-0001-11">0</td>
+                            </tr>
+                            <tr id="mr-0010">
+                                <td class="cd-0010">0010</td>
+                                <td id="cd-0010-00">0</td>
+                                <td id="cd-0010-01">0</td>
+                                <td id="cd-0010-10">0</td>
+                                <td id="cd-0010-11">0</td>
+                            </tr>
+                            <tr id="mr-0011">
+                                <td class="cd-0011">0011</td>
+                                <td id="cd-0011-00">0</td>
+                                <td id="cd-0011-01">0</td>
+                                <td id="cd-0011-10">0</td>
+                                <td id="cd-0011-11">0</td>
+                            </tr>
+                            <tr id="mr-0100">
+                                <td class="cd-0100">0100</td>
+                                <td id="cd-0100-00">0</td>
+                                <td id="cd-0100-01">0</td>
+                                <td id="cd-0100-10">0</td>
+                                <td id="cd-0100-11">0</td>
+                            </tr>
+                            <tr id="mr-0101">
+                                <td class="cd-0101">0101</td>
+                                <td id="cd-0101-00">0</td>
+                                <td id="cd-0101-01">0</td>
+                                <td id="cd-0101-10">0</td>
+                                <td id="cd-0101-11">0</td>
+                            </tr>
+                            <tr id="mr-0110">
+                                <td class="cd-0110">0110</td>
+                                <td id="cd-0110-00">0</td>
+                                <td id="cd-0110-01">0</td>
+                                <td id="cd-0110-10">0</td>
+                                <td id="cd-0110-11">0</td>
+                            </tr>
+                            <tr id="mr-0111">
+                                <td class="cd-0111">0111</td>
+                                <td id="cd-0111-00">0</td>
+                                <td id="cd-0111-01">0</td>
+                                <td id="cd-0111-10">0</td>
+                                <td id="cd-0111-11">0</td>
+                            </tr>
+                            <tr id="mr-1000">
+                                <td class="cd-1000">1000</td>
+                                <td id="cd-1000-00">0</td>
+                                <td id="cd-1000-01">0</td>
+                                <td id="cd-1000-10">0</td>
+                                <td id="cd-1000-11">0</td>
+                            </tr>
+                            <tr id="mr-1001">
+                                <td class="cd-1001">1001</td>
+                                <td id="cd-1001-00">0</td>
+                                <td id="cd-1001-01">0</td>
+                                <td id="cd-1001-10">0</td>
+                                <td id="cd-1001-11">0</td>
+                            </tr>
+                            <tr id="mr-1010">
+                                <td class="cd-1010">1010</td>
+                                <td id="cd-1010-00">0</td>
+                                <td id="cd-1010-01">0</td>
+                                <td id="cd-1010-10">0</td>
+                                <td id="cd-1010-11">0</td>
+                            </tr>
+                            <tr id="mr-1011">
+                                <td class="cd-1011">1011</td>
+                                <td id="cd-1011-00">0</td>
+                                <td id="cd-1011-01">0</td>
+                                <td id="cd-1011-10">0</td>
+                                <td id="cd-1011-11">0</td>
+                            </tr>
+                            <tr id="mr-1100">
+                                <td class="cd-1100">1100</td>
+                                <td id="cd-1100-00">0</td>
+                                <td id="cd-1100-01">0</td>
+                                <td id="cd-1100-10">0</td>
+                                <td id="cd-1100-11">0</td>
+                            </tr>
+                            <tr id="mr-1101">
+                                <td class="cd-1101">1101</td>
+                                <td id="cd-1101-00">0</td>
+                                <td id="cd-1101-01">0</td>
+                                <td id="cd-1101-10">0</td>
+                                <td id="cd-1101-11">0</td>
+                            </tr>
+                            <tr id="mr-1110">
+                                <td class="cd-1100">1110</td>
+                                <td id="cd-1110-00">0</td>
+                                <td id="cd-1110-01">0</td>
+                                <td id="cd-1110-10">0</td>
+                                <td id="cd-1110-11">0</td>
+                            </tr>
+                            <tr id="mr-1111">
+                                <td class="cd-1111">1111</td>
+                                <td id="cd-1111-00">0</td>
+                                <td id="cd-1111-01">0</td>
+                                <td id="cd-1111-10">0</td>
+                                <td id="cd-1111-11">0</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <div class="memory">
-                <p class="memory-title">
-                    Memory
-                </p>
-                <div class="memory-container">
-
+                <div class="col-comps">
+                    <div class="bus">
+                        <p class="bus-title">
+                            BUS
+                        </p>
+                        <div id="bus-container">
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
