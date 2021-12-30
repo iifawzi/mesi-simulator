@@ -215,17 +215,17 @@ margin-left: 10px;
 /* Colors: */
 
 .green-background {
-    background-color: rgb(13, 196, 141);;
+    background-color: rgb(13, 196, 141) !important;
 }
 .red-background {
-    background-color: #fa5555;
+    background-color: #fa5555 !important;
 }
 .yellow-background {
-    background-color: #c0eb27;
+    background-color: #c0eb27 !important;
 }
 .orange-background {
-    background-color: #eb8627;
+    background-color: #eb8627 !important;
 }
 .blue-background {
-    background-color: #288bfd;
+    background-color: #288bfd !important;
 }

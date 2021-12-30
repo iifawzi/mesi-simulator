@@ -122,9 +122,9 @@ const processorState = {
 
 const memoryData = {
     m0000: {
-        m00: 0,
+        m00: 40,
         m01: 0,
-        m10: 0,
+        m10: 60,
         m11: 0,
     },
     m0001: {
@@ -228,9 +228,6 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 
-
-
-
 const initProcessor = (processorNumber) => {
     const getSaveBtn = document.getElementById(`save-btn-${processorNumber}`);
     const getLoadBtn = document.getElementById(`load-btn-${processorNumber}`);
@@ -265,17 +262,19 @@ const processorSave = (processorNumber, address, value, color) => {
     const tag = address.slice(0, 4);
     const offset = address.slice(4);
     // Determine which cache line we will use: 
-    // the line is not used yet, if its cycle is zero
     let lineToUse = -1;
     let lineWithLowestCycle = 1;
     let lineWithLowestCycleValue = processorState['p1'][1].cycle;
     const processorData = processorState['p' + processorNumber];
     for (const lineNumber in processorData) {
         ld = processorData[lineNumber];
+        // the line is not used yet, if its cycle is zero
+        // or the tag is already in the cache, use that line. 
         if (ld.cycle === 0 || ld.tag === tag) {
             lineToUse = lineNumber;
             break;
         }
+        // to keep track for the line with the lowest cycle, to perform the lru later. 
         if (ld.cycle < lineWithLowestCycleValue) {
             lineWithLowestCycle = lineNumber;
         }
@@ -414,7 +413,7 @@ const processorLoad = (processorNumber, address, color) => {
                 getClock.classList.add(`${color}-background`);
                 getClock.innerText = clockCycles;
             } else {
-                getFromMemoryUpdate(tag, processorNumber, lineNumber, lineData, 'blue');
+                getFromMemoryUpdate(tag, processorNumber, lineNumber, lineData);
             }
 
         }
@@ -470,7 +469,7 @@ const updateMemory = (lineData) => {
     memElement.classList.add(`yellow-background`);
 }
 
-const getFromMemoryUpdate = (tag, processorNumber, lineNumber, lineData, color) => {
+const getFromMemoryUpdate = (tag, processorNumber, lineNumber, lineData) => {
     const theState = 'Exclusive';
     const v00 = document.getElementById(`cd-${tag}-00`).innerText
     const v01 = document.getElementById(`cd-${tag}-01`).innerText
@@ -484,32 +483,32 @@ const getFromMemoryUpdate = (tag, processorNumber, lineNumber, lineData, color) 
 
     // Update values: 
     const elm00 = document.getElementsByClassName(`c${processorNumber}-ca${lineNumber}-00`)[0];
-    elm00.classList.add(`${color}-background`);
+    elm00.classList.add(`green-background`);
     elm00.innerText = v00
     const elm01 = document.getElementsByClassName(`c${processorNumber}-ca${lineNumber}-01`)[0];
-    elm01.classList.add(`${color}-background`);
+    elm01.classList.add(`green-background`);
     elm01.innerText = v01
     const elm10 = document.getElementsByClassName(`c${processorNumber}-ca${lineNumber}-10`)[0];
-    elm10.classList.add(`${color}-background`);
+    elm10.classList.add(`green-background`);
     elm10.innerText = v10
     const elm11 = document.getElementsByClassName(`c${processorNumber}-ca${lineNumber}-11`)[0];
-    elm11.classList.add(`${color}-background`);
+    elm11.classList.add(`green-background`);
     elm11.innerText = v11
 
     // Update the corresponding Tag:
     lineData.tag = tag;
     const getTag = document.getElementsByClassName(`c${processorNumber}-ca${lineNumber}-tag`)[0];
-    getTag.classList.add(`${color}-background`);
+    getTag.classList.add(`blue-background`);
     getTag.innerText = tag;
     // Update the corresponding State:
     lineData.state = theState
     const getState = document.getElementsByClassName(`c${processorNumber}-ca${lineNumber}-state`)[0];
-    getState.classList.add(`${color}-background`);
+    getState.classList.add(`blue-background`);
     getState.innerText = theState
     // Update the corresponding clock:
     lineData.cycle = clockCycles;
     const getClock = document.getElementsByClassName(`c${processorNumber}-ca${lineNumber}-clock`)[0];
-    getClock.classList.add(`${color}-background`);
+    getClock.classList.add(`blue-background`);
     getClock.innerText = clockCycles;
 }
 
